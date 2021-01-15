@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2219bf6f41194122bb8719d6ccb29f01, type: 3}
+  m_Name: NodyWindowSettings
+  m_EditorClassIdentifier: 
+  DotAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5
+      outSlope: 1.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.2
+      outSlope: 0.2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurrentGraph: {fileID: 11400000, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  RecentlyOpenedGraphs:
+  - {fileID: 11400000, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: 11400000, guid: a7fac2a000cbaf94ea875336a7b1e5ca, type: 2}
+  - {fileID: 11400000, guid: 7aa078f73ef5b5548831e32fd597b98f, type: 2}
+  CopiedNodes: []
+  DeletedNodes:
+  - {fileID: -8213846982031763972, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -1396712540101136376, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -210203011865183582, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: 7414749706920381439, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -304817156337757497, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -4352305867625722602, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: 6651873252236553816, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -2775542224771840599, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -7005262935807232164, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -577161624481741567, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  - {fileID: -296306412099304208, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+  SelectedNodes: []
+  GraphTabs:
+  - IsRootTab: 1
+    Graph: {fileID: 11400000, guid: 784d3e49434d7b04e9ef7857ba92c72c, type: 2}
+    SubGraphNode: {fileID: 0}
+    Zoom: 0.8
+    PanOffset: {x: 408.20215, y: 209.90343}
+    SelectedNodes: []
+    DeletedNodes: []
+  CurrentView: 1
+  CurrentPanOffset: {x: 408.20215, y: 209.90343}
+  DefaultPanOffset: {x: 0, y: 0}
+  IsDirty: 0
+  SaveCurrentGraphWithControlS: 1
+  CurrentDotAnimationSpeed: 0.6
+  CurrentZoom: 0.8
+  DefaultDotAnimationSpeed: 0.6
+  DefaultZoom: 1
+  ShowNodeNotes: 1
