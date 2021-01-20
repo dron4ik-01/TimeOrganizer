@@ -1,29 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TimeOrganizer.ControlPanel;
+using TimeOrganizer.Tags;
 using UnityEngine;
-using UnityEngine.UI;
 using  Zenject;
 
 namespace TimeOrganizer
 {
     public class GameInstaller : MonoInstaller
     {
-        [Header("Control Panel dependencies")]
+        [Header("Control Panel dependencies")] 
         [SerializeField] private TopPanelManager m_topPanelManager;
         [SerializeField] private ControlButton m_firstActiveButton;
+
+        [Header("Managers instances")] 
+        [SerializeField] private TagsManager m_tagsManager;
+        
         public override void InstallBindings()
         {
-            InstallControlPanel();
+            ControlPanelInstalls();
+            
+            Container.Bind<ObjectsHandler>().AsSingle();
+            Container.Bind<TagsManager>().FromInstance(m_tagsManager);
         }
 
-        private void InstallControlPanel()
+        private void ControlPanelInstalls()
         {
-            Container.Bind<ControlPanelManager>().AsSingle()
-                .WithArguments(m_firstActiveButton);
-
+            Container.Bind<ControlPanelManager>().AsSingle().WithArguments(m_firstActiveButton);
             Container.Bind<TopPanelManager>().FromInstance(m_topPanelManager);
         }
         
+        [Serializable] public class Settings
+        {
+            public GameObject tagPrefab;
+
+        }
     }
 }
