@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PopupNames:
   - SettingsPopup
+  - TagColorPopup
   Popups:
   - {fileID: 11400000, guid: 5cbaee44e712aa94b8b921866e7c7ff7, type: 2}
+  - {fileID: 11400000, guid: eb75292199c996440833bc64e5902672, type: 2}

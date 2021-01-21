@@ -14,19 +14,20 @@ namespace TimeOrganizer
 
         [Header("Managers instances")] 
         [SerializeField] private TagsManager m_tagsManager;
-        
+        [SerializeField] private ManageTagPanel m_manageTagPanel;
         public override void InstallBindings()
         {
             ControlPanelInstalls();
             
             Container.Bind<ObjectsHandler>().AsSingle();
-            Container.Bind<TagsManager>().FromInstance(m_tagsManager);
+            Container.Bind<TagsManager>().FromInstance(m_tagsManager).AsSingle();
+            Container.Bind<ManageTagPanel>().FromInstance(m_manageTagPanel).AsSingle();
         }
 
         private void ControlPanelInstalls()
         {
             Container.Bind<ControlPanelManager>().AsSingle().WithArguments(m_firstActiveButton);
-            Container.Bind<TopPanelManager>().FromInstance(m_topPanelManager);
+            Container.Bind<TopPanelManager>().FromInstance(m_topPanelManager).AsSingle();
         }
         
         [Serializable] public class Settings

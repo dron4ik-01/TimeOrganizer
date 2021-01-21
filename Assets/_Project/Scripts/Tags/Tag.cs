@@ -1,8 +1,9 @@
 using System;
-using Doozy.Engine.Extensions;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace TimeOrganizer.Tags
 {
@@ -12,6 +13,8 @@ namespace TimeOrganizer.Tags
         [SerializeField] private Image m_backgroundImage;
         [SerializeField] private Image m_iconImage;
 
+        [Inject] private List<TagSprite> m_tagSprites;
+        
         public string Label
         {
             get => m_label.text;
@@ -20,7 +23,7 @@ namespace TimeOrganizer.Tags
 
         public string Color
         {
-            get => ColorUtility.ToHtmlStringRGB(m_backgroundImage.color);
+            get => ColorUtility.ToHtmlStringRGBA(m_backgroundImage.color);
             set
             {
                 ColorUtility.TryParseHtmlString(value, out var col);

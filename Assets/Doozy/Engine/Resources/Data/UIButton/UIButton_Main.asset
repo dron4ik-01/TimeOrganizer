@@ -21,3 +21,6 @@ MonoBehaviour:
   - Tags
   - Settings
   - SettingsPopup
+  - Next
+  - DeleteItem
+  - OpenManageTagView

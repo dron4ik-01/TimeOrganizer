@@ -17,7 +17,7 @@ MonoBehaviour:
     inactiveButtonColor: {r: 0, g: 0, b: 0, a: 1}
   m_defaultTags:
   - Label: Sleep
-    Color: '#23AFFFFF'
+    Color: 23AFFFFFF
     SpriteID: 4
   - Label: Work
     Color: '#FFD532FF'

@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42f06ff6cc543ea942180e019f0fc8d, type: 3}
-  m_Name: UIView_MainCategory
+  m_Script: {fileID: 11500000, guid: 17215f689fb19554ab6b81c2308113df, type: 3}
+  m_Name: UIPopupLink_TagColorPopup
   m_EditorClassIdentifier: 
-  CategoryName: MainCategory
-  DatabaseType: 2
-  Names:
-  - Shcedule
-  - Routines
-  - Blocks
-  - Tags
-  - Settings
-  - ManageTag
+  PopupName: TagColorPopup
+  Prefab: {fileID: 5470263806240107417, guid: eb31aa3f0f1a13b41975d7b0f9a2f5aa, type: 3}
