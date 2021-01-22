@@ -17292,7 +17292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3374059a571a96e41a870dc4307e0229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tagColorPopup: {fileID: 9198545773948217610}
+  m_popup: {fileID: 9198545773948217610}
 --- !u!1 &1764861391768166938
 GameObject:
   m_ObjectHideFlags: 0
@@ -41917,7 +41917,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   AutoSelectPreviouslySelectedButtonAfterHide: 1
-  BlockBackButton: 1
+  BlockBackButton: 0
   CanvasName: MasterCanvas
   Container:
     Canvas: {fileID: 1370420460958788681}
@@ -41935,14 +41935,14 @@ MonoBehaviour:
   CustomCanvasName: 0
   Data:
     Buttons:
-    - {fileID: 3600678925269647418}
+    - {fileID: 0}
     Images:
     - {fileID: 0}
     Labels:
     - {fileID: 1133770138920471525}
     - {fileID: 0}
   DestroyAfterHide: 1
-  DisplayTarget: 0
+  DisplayTarget: 1
   HideBehavior:
     Animation:
       AnimationType: 2
@@ -57336,7 +57336,7 @@ MonoBehaviour:
   StartAlpha: 1
   AllowMultipleClicks: 1
   ButtonCategory: Custom
-  ButtonName: Ok
+  ButtonName: Cancel
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -58196,7 +58196,19 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 9198545773948217610}
+            m_TargetAssemblyTypeName: Doozy.Engine.UI.UIPopup, Assembly-CSharp
+            m_MethodName: Hide
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0

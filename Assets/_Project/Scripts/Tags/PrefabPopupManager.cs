@@ -8,9 +8,9 @@ using Zenject;
 
 namespace TimeOrganizer.Tags
 {
-    public class ColorButtonManager : MonoBehaviour
+    public class PrefabPopupManager : MonoBehaviour
     {
-        [SerializeField] private UIPopup m_tagColorPopup;
-        public UIPopup TagColorPopup => m_tagColorPopup;
+        [SerializeField] private UIPopup m_popup;
+        public UIPopup Popup => m_popup;
     }
 }

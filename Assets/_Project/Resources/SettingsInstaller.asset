@@ -17,25 +17,26 @@ MonoBehaviour:
     inactiveButtonColor: {r: 0, g: 0, b: 0, a: 1}
   m_defaultTags:
   - Label: Sleep
-    Color: 23AFFFFFF
+    Color: 23AFFFF
     SpriteID: 4
   - Label: Work
-    Color: '#FFD532FF'
+    Color: FFD532
     SpriteID: 2
   - Label: On The Way
-    Color: '#FFAB53FF'
-    SpriteID: 8
+    Color: FFAB53
+    SpriteID: 7
   m_tagSprites:
   - sprite: {fileID: 21300000, guid: 90b6c4051aa7fe041a911f071372b53b, type: 3}
   - sprite: {fileID: 21300000, guid: d568251b452b3dd44a799f6bfdf3d4bb, type: 3}
   - sprite: {fileID: 21300000, guid: 9623cef15cf61b7499bea52c720886b0, type: 3}
-  - sprite: {fileID: 21300000, guid: 16c8f15a02cf7bb43a09c07aecdac0ed, type: 3}
+  - sprite: {fileID: 21300000, guid: 0022f5f405a236347bc8ee192cf6cea9, type: 3}
   - sprite: {fileID: 21300000, guid: 159038efbb3337348ad824329920cfa5, type: 3}
-  - sprite: {fileID: 21300000, guid: 29a9d4d84cf434744a010a8790999935, type: 3}
-  - sprite: {fileID: 21300000, guid: a449930517b458242afad443c257cf94, type: 3}
+  - sprite: {fileID: 21300000, guid: edd04440ef1618c408de7b34b97e0f51, type: 3}
   - sprite: {fileID: 21300000, guid: 59d10465ac0ca4d49aa022dd21f908ff, type: 3}
   - sprite: {fileID: 21300000, guid: f92358c9611ef244bad7bdabcfd08c6f, type: 3}
   - sprite: {fileID: 21300000, guid: 4b9e10f406054eb4e9360c02ca53e5f8, type: 3}
-  - sprite: {fileID: 21300000, guid: 7e1dc6232bf83904ca9fdb6e3a13f597, type: 3}
+  - sprite: {fileID: 21300000, guid: f9a7aaf8d8f5de942a2d10e64e5a2421, type: 3}
+  - sprite: {fileID: 21300000, guid: 3180bd7362ba5a048b2ab43b5f0b2e4a, type: 3}
+  - sprite: {fileID: 21300000, guid: 6852d3c716b44894ea5d4302d898503b, type: 3}
   m_settings:
     tagPrefab: {fileID: 2336432938341014166, guid: f93c97e5227f29b4e98a0c80f8a97aaf, type: 3}

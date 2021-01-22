@@ -19,11 +19,17 @@ namespace TimeOrganizer.Tags
         [SerializeField] private Image m_chooseColorBackground;
         [SerializeField] private Image m_chooseIconBackground;
         [SerializeField] private Image m_chooseIcon;
-
+        
+        public int ChooseIconId { get; set; }
         public TextMeshProUGUI Title => m_title;
         public UIButton DeleteItemButton => m_deleteItem;
         public TMP_InputField InputField => m_inputField;
 
+        public Image ChooseIcon
+        {
+            get => m_chooseIcon;
+            set => m_chooseIcon = value;
+        }
         public TextMeshProUGUI PlaceholderText
         {
             get => m_placeholderText;
@@ -34,17 +40,12 @@ namespace TimeOrganizer.Tags
             get => m_chooseColorBackground.color;
             set => m_chooseColorBackground.color = value;
         }
-        public Image ChooseIcon
-        {
-            get => m_chooseIcon;
-            set => m_chooseIcon = value;
-        }
-
         public Image ChooseIconBg
         {
             get => m_chooseIconBackground;
             set => m_chooseIconBackground = value;
         }
+        
 
         private void Start() => s_instance = this; 
     }

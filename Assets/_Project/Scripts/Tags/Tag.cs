@@ -13,7 +13,7 @@ namespace TimeOrganizer.Tags
         [SerializeField] private Image m_backgroundImage;
         [SerializeField] private Image m_iconImage;
 
-        [Inject] private List<TagSprite> m_tagSprites;
+        private int m_iconID;
         
         public string Label
         {
@@ -26,7 +26,7 @@ namespace TimeOrganizer.Tags
             get => ColorUtility.ToHtmlStringRGBA(m_backgroundImage.color);
             set
             {
-                ColorUtility.TryParseHtmlString(value, out var col);
+                ColorUtility.TryParseHtmlString( "#" + value, out var col);
                 m_backgroundImage.color = col;
             }
         }
@@ -35,6 +35,12 @@ namespace TimeOrganizer.Tags
         {
             get => m_iconImage.sprite;
             set => m_iconImage.sprite = value;
+        }
+
+        public int IconID
+        {
+            get => m_iconID;
+            set => m_iconID = value;
         }
     }
     

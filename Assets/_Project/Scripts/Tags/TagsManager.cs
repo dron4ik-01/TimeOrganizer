@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Doozy.Engine;
+using Doozy.Engine.Nody.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,31 +49,24 @@ namespace TimeOrganizer.Tags
             return container.Tags;
         }
 
-        private List<TagInfo> ConvertToTagInfos(List<Tag> tags)
+        private List<TagInfo> ConvertToTagInfos(List<Tag> tagsToConvert)
         {
             List<TagInfo> tagInfos = new List<TagInfo>();
-            foreach (Tag tagComp in tags)
+            foreach (Tag tagComp in tagsToConvert)
             {
-                TagInfo tagInfo = new TagInfo
+                tagInfos.Add(new TagInfo
                 {
                     Color = tagComp.Color,
                     Label = tagComp.Label,
-                    // BUG: Incorrect finding of image ID.
-                    SpriteID = m_tagSprites.FindIndex(sprite => tagComp.Icon)
-                };
-
-                tagInfos.Add(tagInfo);
+                    SpriteID = tagComp.IconID
+                });
             }
-
             return tagInfos;
         }
 
         private void SaveTags(List<TagInfo> tags)
         {
-            ListContainer container = new ListContainer(tags);
-            string json = JsonUtility.ToJson(container);
-
-            PlayerPrefs.SetString("TAGS_DATA_LOCAL", json);
+            PlayerPrefs.SetString("TAGS_DATA_LOCAL", SerializeToJson(tags));
         }
 
         private void CreateTag(TagInfo tagInfo, Transform parent)
@@ -82,45 +77,54 @@ namespace TimeOrganizer.Tags
             tagComp.Label = tagInfo.Label;
             tagComp.Color = tagInfo.Color;
             tagComp.Icon = m_tagSprites[tagInfo.SpriteID].sprite;
-
+            tagComp.IconID = tagInfo.SpriteID;
+            
             m_objectsHandler.Tags.Add(tagGO.GetComponent<Tag>());
         }
 
         public void CreateCustomTag()
         {
-            // BUG: All tags after reload has equal background and icons.
             TagInfo playerInputTag = new TagInfo
             {
                 Label = m_manageTagPanel.InputField.text,
-                Color = ColorUtility.ToHtmlStringRGBA(m_manageTagPanel.ChooseColor),
-                SpriteID = m_tagSprites.FindIndex(sprite => m_manageTagPanel.ChooseIcon)
+                Color = ColorUtility.ToHtmlStringRGB(m_manageTagPanel.ChooseColor),
+                SpriteID = m_manageTagPanel.ChooseIconId
             };
 
-            bool incorrectInput = playerInputTag.Label == "" || m_objectsHandler.Tags.Exists(t => t.Label == playerInputTag.Label);
-            if (incorrectInput)
+            bool incorrectInput = string.IsNullOrWhiteSpace(playerInputTag.Label);
+            bool alreadyExists = m_objectsHandler.Tags.Exists(t => t.Label == playerInputTag.Label);
+            
+            if (incorrectInput || alreadyExists)
             {
-                m_manageTagPanel.PlaceholderText.text = "Incorrect input";
+                m_manageTagPanel.InputField.text = "";
+                m_manageTagPanel.PlaceholderText.text = incorrectInput ? "Incorrect input" : "Tag already exists";
             }
             else
             {
                 CreateTag(playerInputTag, m_tagsContent);
                 SaveTags(ConvertToTagInfos(m_objectsHandler.Tags));
+                GameEventMessage.SendEvent("GoToTags");
             }
         }
 
         public void DeleteTag()
         {
-            
+             //TODO: Delete tag func
         }
         
         public void ShowTagCreationPanel()
         {
             m_manageTagPanel.Title.text = "New tag";
+            m_manageTagPanel.InputField.text = "";
+            m_manageTagPanel.ChooseColor = Color.gray;
+            m_manageTagPanel.ChooseIconBg.color = Color.gray;
             m_manageTagPanel.DeleteItemButton.gameObject.SetActive(false);
         }
 
         public void ShowTagEditionPanel()
         {
+            //TODO: Edit tag func
+            
             m_manageTagPanel.Title.text = "Edit tag";
             m_manageTagPanel.DeleteItemButton.gameObject.SetActive(true);
         }
