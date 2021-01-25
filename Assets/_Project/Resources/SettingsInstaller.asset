@@ -17,13 +17,13 @@ MonoBehaviour:
     inactiveButtonColor: {r: 0, g: 0, b: 0, a: 1}
   m_defaultTags:
   - Label: Sleep
-    Color: 23AFFFF
+    Color: 989898
     SpriteID: 4
   - Label: Work
-    Color: FFD532
+    Color: FF6B26
     SpriteID: 2
   - Label: On The Way
-    Color: FFAB53
+    Color: 54A148
     SpriteID: 7
   m_tagSprites:
   - sprite: {fileID: 21300000, guid: 90b6c4051aa7fe041a911f071372b53b, type: 3}

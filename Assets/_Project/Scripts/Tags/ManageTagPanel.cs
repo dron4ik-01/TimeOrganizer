@@ -16,15 +16,20 @@ namespace TimeOrganizer.Tags
         [SerializeField] private TMP_InputField m_inputField;
         [SerializeField] private TextMeshProUGUI m_placeholderText;
         [SerializeField] private UIButton m_deleteItem;
+        [SerializeField] private UIButton m_nextButton;
         [SerializeField] private Image m_chooseColorBackground;
         [SerializeField] private Image m_chooseIconBackground;
         [SerializeField] private Image m_chooseIcon;
+
+        private Tag m_item;
         
         public int ChooseIconId { get; set; }
+        public bool IsNewTag { get; set; }
         public TextMeshProUGUI Title => m_title;
         public UIButton DeleteItemButton => m_deleteItem;
+        public UIButton NextButton => m_nextButton;
         public TMP_InputField InputField => m_inputField;
-
+        
         public Image ChooseIcon
         {
             get => m_chooseIcon;
@@ -45,7 +50,12 @@ namespace TimeOrganizer.Tags
             get => m_chooseIconBackground;
             set => m_chooseIconBackground = value;
         }
-        
+
+        public Tag Item
+        {
+            get => m_item;
+            set => m_item = value;
+        }
 
         private void Start() => s_instance = this; 
     }
