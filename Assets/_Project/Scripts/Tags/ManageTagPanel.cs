@@ -1,22 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Doozy.Engine.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TimeOrganizer.Tags
 {
-    public class ManageTagPanel : MonoBehaviour
+    public class ManageTagPanel : ManageTab
     {
         public static ManageTagPanel s_instance;
 
-        [SerializeField] private TextMeshProUGUI m_title;
         [SerializeField] private TMP_InputField m_inputField;
         [SerializeField] private TextMeshProUGUI m_placeholderText;
-        [SerializeField] private UIButton m_deleteItem;
-        [SerializeField] private UIButton m_nextButton;
         [SerializeField] private Image m_chooseColorBackground;
         [SerializeField] private Image m_chooseIconBackground;
         [SerializeField] private Image m_chooseIcon;
@@ -24,10 +20,6 @@ namespace TimeOrganizer.Tags
         private Tag m_item;
         
         public int ChooseIconId { get; set; }
-        public bool IsNewTag { get; set; }
-        public TextMeshProUGUI Title => m_title;
-        public UIButton DeleteItemButton => m_deleteItem;
-        public UIButton NextButton => m_nextButton;
         public TMP_InputField InputField => m_inputField;
         
         public Image ChooseIcon

@@ -19283,7 +19283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73cbf7915433e94982f2bc6b69c809c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tagsContent: {fileID: 1975578675}
+  m_content: {fileID: 1975578675}
 --- !u!1 &1034332774
 GameObject:
   m_ObjectHideFlags: 0
@@ -24124,7 +24124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 19.949951}
+  m_AnchoredPosition: {x: 0, y: 19.950195}
   m_SizeDelta: {x: 0, y: -322.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852714456
@@ -25500,10 +25500,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_title: {fileID: 1828009176}
-  m_inputField: {fileID: 220871776}
-  m_placeholderText: {fileID: 1224826579}
   m_deleteItem: {fileID: 176016310}
   m_nextButton: {fileID: 1747822203}
+  m_inputField: {fileID: 220871776}
+  m_placeholderText: {fileID: 1224826579}
   m_chooseColorBackground: {fileID: 452454032}
   m_chooseIconBackground: {fileID: 704155302}
   m_chooseIcon: {fileID: 1715000604}

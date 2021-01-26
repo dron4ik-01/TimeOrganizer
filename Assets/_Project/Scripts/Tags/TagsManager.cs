@@ -1,75 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Doozy.Engine;
-using Doozy.Engine.Nody.Models;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace TimeOrganizer.Tags
 {
-    public class TagsManager : MonoBehaviour
+    public class TagsManager : TabManager
     {
-        [SerializeField] private Transform m_tagsContent;
-
-        [Inject] private GameInstaller.Settings m_settings;
-        [Inject] private ObjectsHandler m_objectsHandler;
         [Inject] private List<TagInfo> m_defaultTags;
         [Inject] private List<TagSprite> m_tagSprites;
         [Inject] private ManageTagPanel m_manageTagPanel;
 
         private void Awake()
         {
-            Init();
+            List<TagInfo> tagsToCreate = GetListOfObjects("TAGS_DATA_LOCAL", m_defaultTags);
+            tagsToCreate.ForEach(obj => CreateTag(obj, m_content));
         }
 
-        private void Init()
-        {
-            string tagsJson = PlayerPrefs.GetString("TAGS_DATA_LOCAL", SerializeToJson(m_defaultTags));
-            List<TagInfo> tagsToCreate = DeserializeFromJson(tagsJson);
-            tagsToCreate.ForEach(tagInfo => CreateTag(tagInfo, m_tagsContent));
-            SaveTags(tagsToCreate);
-        }
-
-        private string SerializeToJson(List<TagInfo> tags)
-        {
-            // TODO: Wrap this in try/catch to handle serialization exceptions
-            ListContainer container = new ListContainer(tags);
-            string json = JsonUtility.ToJson(container);
-
-            return json;
-        }
-
-        private List<TagInfo> DeserializeFromJson(string json)
-        {
-            // TODO: Wrap this in try/catch to handle deserialization exceptions
-            ListContainer container = JsonUtility.FromJson<ListContainer>(json);
-
-            return container.Tags;
-        }
-
-        private List<TagInfo> ConvertToTagInfos(List<Tag> tagsToConvert)
-        {
-            List<TagInfo> tagInfos = new List<TagInfo>();
-            foreach (Tag tagComp in tagsToConvert)
-            {
-                tagInfos.Add(new TagInfo
-                {
-                    Color = tagComp.Color,
-                    Label = tagComp.Label,
-                    SpriteID = tagComp.IconID
-                });
-            }
-            return tagInfos;
-        }
-
-        private void SaveTags(List<TagInfo> tags)
-        {
-            PlayerPrefs.SetString("TAGS_DATA_LOCAL", SerializeToJson(tags));
-        }
-
-        private void CreateTag(TagInfo tagInfo, Transform parent)
+        public void CreateTag(TagInfo tagInfo, Transform parent)
         {
             GameObject tagGO = Instantiate(m_settings.tagPrefab, parent);
             Tag tagComp = tagGO.GetComponent<Tag>();
@@ -78,7 +28,7 @@ namespace TimeOrganizer.Tags
             tagComp.Color = tagInfo.Color;
             tagComp.Icon = m_tagSprites[tagInfo.SpriteID].sprite;
             tagComp.IconID = tagInfo.SpriteID;
-            tagComp.Button.OnClick.OnTrigger.Event.AddListener(() => ShowTagEditionPanel(tagComp) );
+            tagComp.Button.OnClick.OnTrigger.Event.AddListener( () => ShowTagEditionPanel(tagComp) );
             
             m_objectsHandler.Tags.Add(tagGO.GetComponent<Tag>());
         }
@@ -94,8 +44,8 @@ namespace TimeOrganizer.Tags
 
             if (CanSaveTag(playerInputTag) == false) return;
             
-            CreateTag(playerInputTag, m_tagsContent);
-            SaveTags(ConvertToTagInfos(m_objectsHandler.Tags));
+            CreateTag(playerInputTag, m_content);
+            SaveCurrentTags();
             GameEventMessage.SendEvent("GoToTags");
         }
         
@@ -104,7 +54,7 @@ namespace TimeOrganizer.Tags
             bool incorrectInput = string.IsNullOrWhiteSpace(playerInputTag.Label);
             
             bool nameExists = m_objectsHandler.Tags.Exists(t => t.Label == playerInputTag.Label);
-            bool alreadyExists = m_manageTagPanel.IsNewTag ? nameExists 
+            bool alreadyExists = m_manageTagPanel.IsNewTab ? nameExists 
                 : playerInputTag.Label != m_manageTagPanel.Item.Label && nameExists;
             
             if (incorrectInput || alreadyExists)
@@ -117,9 +67,9 @@ namespace TimeOrganizer.Tags
             return true;
         }
         
-        public void ShowTagCreationPanel()
+        public void ShowTagCreationPanel() // used by asset
         {
-            m_manageTagPanel.IsNewTag = true;
+            m_manageTagPanel.IsNewTab = true;
             
             m_manageTagPanel.Title.text = "New tag";
             m_manageTagPanel.InputField.text = "";
@@ -135,7 +85,7 @@ namespace TimeOrganizer.Tags
         {
             GameEventMessage.SendEvent("GoToManageTag");
             m_manageTagPanel.Item = tagComp;
-            m_manageTagPanel.IsNewTag = false;
+            m_manageTagPanel.IsNewTab = false;
             
             ColorUtility.TryParseHtmlString( "#" + tagComp.Color, out Color col);
             m_manageTagPanel.ChooseColor = col;
@@ -166,8 +116,8 @@ namespace TimeOrganizer.Tags
             m_manageTagPanel.Item.Color = playerInputTag.Color;
             m_manageTagPanel.Item.Icon = m_tagSprites[playerInputTag.SpriteID].sprite;
             m_manageTagPanel.Item.IconID = playerInputTag.SpriteID;
-            
-            SaveTags(ConvertToTagInfos(m_objectsHandler.Tags));
+
+            SaveCurrentTags();
             GameEventMessage.SendEvent("GoToTags");
         }
         
@@ -175,20 +125,30 @@ namespace TimeOrganizer.Tags
         {
             Tag tagItem = m_objectsHandler.Tags.Find(t => t.Label == m_manageTagPanel.Item.Label);
             m_objectsHandler.Tags.Remove(tagItem);
-            Debug.Log(tagItem);
-            
             Destroy(tagItem.gameObject);
-            
-            SaveTags(ConvertToTagInfos(m_objectsHandler.Tags));
+
+            SaveCurrentTags();
             GameEventMessage.SendEvent("GoToTags");
         }
-}
-
-    public struct ListContainer
-    {
-        public List<TagInfo> Tags;
         
-        public ListContainer(List<TagInfo> tags)
-        { Tags = tags; }
+        private void SaveCurrentTags()
+        {
+            ListSerializer.SaveList(ConvertToTagInfos(m_objectsHandler.Tags), "TAGS_DATA_LOCAL");
+        }
+        
+        private List<TagInfo> ConvertToTagInfos(List<Tag> tagsToConvert)
+        {
+            List<TagInfo> tagInfos = new List<TagInfo>();
+            foreach (Tag tagComp in tagsToConvert)
+            {
+                tagInfos.Add(new TagInfo
+                {
+                    Color = tagComp.Color,
+                    Label = tagComp.Label,
+                    SpriteID = tagComp.IconID
+                });
+            }
+            return tagInfos;
+        }
     }
 }
