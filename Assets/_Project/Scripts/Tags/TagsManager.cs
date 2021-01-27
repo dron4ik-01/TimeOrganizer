@@ -67,7 +67,7 @@ namespace TimeOrganizer.Tags
             return true;
         }
         
-        public void ShowTagCreationPanel() // used by asset
+        public void ShowTagCreationPanel()
         {
             m_manageTagPanel.IsNewTab = true;
             
@@ -79,11 +79,12 @@ namespace TimeOrganizer.Tags
             
             m_manageTagPanel.NextButton.OnClick.OnTrigger.Event.RemoveAllListeners();
             m_manageTagPanel.NextButton.OnClick.OnTrigger.Event.AddListener(CreateCustomTag);
+            
+            GameEventMessage.SendEvent("GoToManageTag");
         }
         
         private void ShowTagEditionPanel(Tag tagComp)
         {
-            GameEventMessage.SendEvent("GoToManageTag");
             m_manageTagPanel.Item = tagComp;
             m_manageTagPanel.IsNewTab = false;
             
@@ -99,6 +100,8 @@ namespace TimeOrganizer.Tags
 
             m_manageTagPanel.NextButton.OnClick.OnTrigger.Event.RemoveAllListeners();
             m_manageTagPanel.NextButton.OnClick.OnTrigger.Event.AddListener(ApplyChanges);
+            
+            GameEventMessage.SendEvent("GoToManageTag");
         }
 
         private void ApplyChanges()

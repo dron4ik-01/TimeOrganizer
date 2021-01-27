@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TimeOrganizer
 {
-    public abstract class ManageTab : MonoBehaviour
+    public abstract class ManagePanel : MonoBehaviour
     {
         [SerializeField] protected TextMeshProUGUI m_title;
         [SerializeField] protected UIButton m_deleteItem;

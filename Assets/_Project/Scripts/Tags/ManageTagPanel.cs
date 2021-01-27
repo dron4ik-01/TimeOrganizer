@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace TimeOrganizer.Tags
 {
-    public class ManageTagPanel : ManageTab
+    public class ManageTagPanel : ManagePanel
     {
         public static ManageTagPanel s_instance;
 

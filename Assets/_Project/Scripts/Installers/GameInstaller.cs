@@ -1,8 +1,9 @@
 using System;
+using Screens.Module;
 using TimeOrganizer.ControlPanel;
 using TimeOrganizer.Tags;
 using UnityEngine;
-using  Zenject;
+using Zenject;
 
 namespace TimeOrganizer
 {
@@ -34,6 +35,13 @@ namespace TimeOrganizer
         {
             public GameObject tagPrefab;
 
+        }
+
+        [Serializable] public class GameEvents
+        {
+            public GameEvent openManageTagPanel;
+            public GameEvent openManageBlocksPanel;
+            public GameEvent openManageRoutinesPanel;
         }
     }
 }

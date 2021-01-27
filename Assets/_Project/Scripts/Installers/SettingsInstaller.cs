@@ -14,6 +14,7 @@ namespace TimeOrganizer
         [SerializeField] private List<TagInfo> m_defaultTags;
         [SerializeField] private List<TagSprite> m_tagSprites;
         [SerializeField] private GameInstaller.Settings m_settings;
+        [SerializeField] private GameInstaller.GameEvents m_gameEvents;
         
         public override void InstallBindings()
         {
@@ -21,6 +22,7 @@ namespace TimeOrganizer
             Container.BindInstance(m_defaultTags);
             Container.BindInstance(m_settings);
             Container.BindInstance(m_tagSprites);
+            Container.BindInstance(m_gameEvents);
         }
         
         

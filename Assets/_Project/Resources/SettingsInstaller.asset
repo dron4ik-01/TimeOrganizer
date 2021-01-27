@@ -40,3 +40,7 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: 6852d3c716b44894ea5d4302d898503b, type: 3}
   m_settings:
     tagPrefab: {fileID: 2336432938341014166, guid: f93c97e5227f29b4e98a0c80f8a97aaf, type: 3}
+  m_gameEvents:
+    openManageTagTab: {fileID: 11400000, guid: e91cabf0bfbe43a40841fad96e9f788b, type: 2}
+    openManageBlocksTab: {fileID: 11400000, guid: 12caabb5f3aef6741908fe8d20493db4, type: 2}
+    openManageRoutinesTab: {fileID: 11400000, guid: 1622731d56368b14287373802bd9c2b0, type: 2}

@@ -780,7 +780,7 @@ MonoBehaviour:
     ButtonAnimationType: 0
     DeselectButton: 0
     DisableInterval: 0
-    Enabled: 0
+    Enabled: 1
     LoadSelectedPresetAtRuntime: 0
     OnTrigger:
       AnimatorEvents: []
@@ -1001,7 +1001,19 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 4518150437068390275}
+            m_TargetAssemblyTypeName: Doozy.Engine.UI.UIPopup, Assembly-CSharp
+            m_MethodName: Hide
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
       GameEvents:
       - GoToSettings
       SoundData:
@@ -3256,8 +3268,8 @@ MonoBehaviour:
     PresetName: CardUp
   HideOnAnyButton: 0
   HideOnBackButton: 0
-  HideOnClickAnywhere: 1
-  HideOnClickContainer: 1
+  HideOnClickAnywhere: 0
+  HideOnClickContainer: 0
   HideOnClickOverlay: 1
   HideProgressor: {fileID: 0}
   OnInverseVisibilityChanged:
