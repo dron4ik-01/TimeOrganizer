@@ -10,7 +10,6 @@ namespace TimeOrganizer.Tags
     public class TagsManager : TabManager
     {
         [Inject] private List<TagInfo> m_defaultTags;
-        [Inject] private List<TagSprite> m_tagSprites;
         [Inject] private ManageTagPanel m_manageTagPanel;
 
         private void Awake()
@@ -21,26 +20,17 @@ namespace TimeOrganizer.Tags
 
         public void CreateTag(TagInfo tagInfo, Transform parent)
         {
-            GameObject tagGO = Instantiate(m_settings.tagPrefab, parent);
+            GameObject tagGO = Instantiate(m_prefabs.tagPrefab, parent);
             Tag tagComp = tagGO.GetComponent<Tag>();
-
-            tagComp.Label = tagInfo.Label;
-            tagComp.Color = tagInfo.Color;
-            tagComp.Icon = m_tagSprites[tagInfo.SpriteID].sprite;
-            tagComp.IconID = tagInfo.SpriteID;
+            SetTagReferences(tagComp, tagInfo);
             tagComp.Button.OnClick.OnTrigger.Event.AddListener( () => ShowTagEditionPanel(tagComp) );
             
-            m_objectsHandler.Tags.Add(tagGO.GetComponent<Tag>());
+            m_objectsHandler.Tags.Add(tagComp);
         }
 
         private void CreateCustomTag()
         {
-            TagInfo playerInputTag = new TagInfo
-            {
-                Label = m_manageTagPanel.InputField.text,
-                Color = ColorUtility.ToHtmlStringRGB(m_manageTagPanel.ChooseColor),
-                SpriteID = m_manageTagPanel.ChooseIconId
-            };
+            TagInfo playerInputTag = m_manageTagPanel.GetCurrentTagInfo();
 
             if (CanSaveTag(playerInputTag) == false) return;
             
@@ -106,12 +96,7 @@ namespace TimeOrganizer.Tags
 
         private void ApplyChanges()
         {
-            TagInfo playerInputTag = new TagInfo
-            {
-                Label = m_manageTagPanel.InputField.text,
-                Color = ColorUtility.ToHtmlStringRGB(m_manageTagPanel.ChooseColor),
-                SpriteID = m_manageTagPanel.ChooseIconId
-            };
+            TagInfo playerInputTag = m_manageTagPanel.GetCurrentTagInfo();
             
             if (CanSaveTag(playerInputTag) == false) return;
 

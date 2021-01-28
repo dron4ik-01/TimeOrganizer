@@ -49,6 +49,15 @@ namespace TimeOrganizer.Tags
             set => m_item = value;
         }
 
+        public TagInfo GetCurrentTagInfo()
+        {
+            return new TagInfo
+            {
+                Label = m_inputField.text,
+                Color = ColorUtility.ToHtmlStringRGB(m_chooseColorBackground.color),
+                SpriteID = ChooseIconId
+            };
+        }
         private void Start() => s_instance = this; 
     }
 }

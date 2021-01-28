@@ -31,10 +31,10 @@ namespace TimeOrganizer
             Container.Bind<TopPanelManager>().FromInstance(m_topPanelManager).AsSingle();
         }
         
-        [Serializable] public class Settings
+        [Serializable] public class Prefabs
         {
             public GameObject tagPrefab;
-
+            public GameObject blockPrefab;
         }
 
         [Serializable] public class GameEvents

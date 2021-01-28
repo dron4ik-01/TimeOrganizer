@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TimeOrganizer.Tags;
 using UnityEngine;
 using Zenject;
 
@@ -10,8 +11,9 @@ namespace TimeOrganizer
     {
         [SerializeField] protected Transform m_content;
         
-        [Inject] protected GameInstaller.Settings m_settings;
+        [Inject] protected GameInstaller.Prefabs m_prefabs;
         [Inject] protected ObjectsHandler m_objectsHandler;
+        [Inject] protected List<TagSprite> m_tagSprites;
 
         protected List<T> GetListOfObjects<T>(string listKey, List<T> defaultObjects)
         {
@@ -20,6 +22,14 @@ namespace TimeOrganizer
             ListSerializer.SaveList(listToCreate, listKey);
             
             return listToCreate;
+        }
+
+        protected void SetTagReferences(Tag tagComp, TagInfo tagInfo)
+        {
+            tagComp.Label = tagInfo.Label;
+            tagComp.Color = tagInfo.Color;
+            tagComp.Icon = m_tagSprites[tagInfo.SpriteID].sprite;
+            tagComp.IconID = tagInfo.SpriteID;
         }
     }
 }
