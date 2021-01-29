@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Doozy.Engine;
@@ -11,8 +12,11 @@ namespace TimeOrganizer.Blocks
         private void Awake()
         {   
             // default list is empty because we dont have any default blocks at first start.
-            List<BlockInfo> tagsToCreate = GetListOfObjects("BLOCKS_DATA_LOCAL", new List<BlockInfo>()); 
-            tagsToCreate.ForEach(obj => CreateBlock(obj, m_content));
+            if (PlayerPrefs.GetString("BLOCKS_DATA_LOCAL") != String.Empty)
+            {
+                List<BlockInfo> tagsToCreate = GetListOfObjects("BLOCKS_DATA_LOCAL", new List<BlockInfo>());
+                tagsToCreate.ForEach(obj => CreateBlock(obj, m_content));
+            }
         }
 
         private void CreateBlock(BlockInfo blockInfo, Transform parent)
